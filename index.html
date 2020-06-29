@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charSet="UTF-8" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
 </head>
-
 <body>
     <script>
-        Object.defineProperty(navigator, 'userAgent', {
-            get: function () { return 'Mobile Android iPad iPhone'; }
-        });
+        //Object.defineProperty(navigator, 'userAgent', {
+        //    get: function () { return 'Mobile Android iPad iPhone'; }
+        //});
 
         const urlParams = new URLSearchParams(window.location.search);
         // const locale = urlParams.get('locale');
         const tawkID = urlParams.get('id');
+
+        if (!tawkID)
+            return;
 
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
@@ -42,5 +43,4 @@
         })();
     </script>
 </body>
-
 </html>
