@@ -9,7 +9,10 @@
 
 <body>
     <script>
-        navigator.userAgent = 'Android iPad iPhone';
+        Object.defineProperty(navigator, 'userAgent', {
+            get: function () { return 'Mobile Android iPad iPhone'; }
+        });
+
         const urlParams = new URLSearchParams(window.location.search);
         // const locale = urlParams.get('locale');
         const tawkID = urlParams.get('id');
