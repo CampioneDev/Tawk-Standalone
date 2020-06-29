@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charSet="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+</head>
+
+<body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        // const locale = urlParams.get('locale');
+        const tawkID = urlParams.get('id');
+
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/' + tawkID + '/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+
+            Tawk_API.onLoad = function () {
+                Tawk_API.maximize();
+
+                for (let iframe of document.getElementsByTagName('iframe')) {
+                    const minimizeButtonElement = iframe.contentWindow.document.getElementById('minimizeChat');
+                    if (minimizeButtonElement) {
+                        minimizeButtonElement.style.display = 'none !important';
+                        minimizeButtonElement.style.pointerEvents = 'none';
+                        minimizeButtonElement.style.visibility = 'hidden';
+                        break;
+                    }
+                }
+            };
+        })();
+    </script>
+</body>
+
+</html>
