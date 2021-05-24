@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charSet="UTF-8" />
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
 </head>
+
 <body>
     <script>
-        //Object.defineProperty(navigator, 'userAgent', {
-        //    get: function () { return 'Mobile Android iPad iPhone'; }
-        //});
-
         const urlParams = new URLSearchParams(window.location.search);
-        // const locale = urlParams.get('locale');
         const tawkID = urlParams.get('id');
 
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
             s1.async = true;
-            s1.src = 'https://embed.tawk.to/' + tawkID; // + '/default';
+            s1.src = 'https://embed.tawk.to/' + tawkID;
             s1.charset = 'UTF-8';
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
 
             Tawk_API.onLoad = function () {
+
                 Tawk_API.maximize();
 
-                for (let iframe of document.getElementsByTagName('iframe')) {
-                    // const minimizeButtonElement = iframe.contentWindow.document.getElementById('minimizeChat');
-                    const minimizeButtonElement = iframe.contentWindow.document.querySelector('body > div > div > div > div.tawk-toolbar.tawk-card-primary.tawk-flex.tawk-card-small.tawk-text-right.tawk-flex-none.tawk-flex-middle.tawk-custom-color > div > button > i.tawk-icon-close')?.parentElement;
-                    if (minimizeButtonElement) {
-                        minimizeButtonElement.style.display = 'none !important';
-                        minimizeButtonElement.style.pointerEvents = 'none';
-                        minimizeButtonElement.style.visibility = 'hidden';
-                        break;
+                const intervalID = setInterval(function () {
+                    const iframes = document.getElementsByTagName('iframe');
+                    // console.log('iframes', iframes);
+                    for (let iframe of iframes) {
+                        // const minimizeButtonElement = iframe.contentWindow.document.getElementById('minimizeChat');
+                        const minimizeButtonElement = iframe.contentWindow.document.querySelector('body > div > div > div > div.tawk-toolbar.tawk-card-primary.tawk-flex.tawk-card-small.tawk-text-right.tawk-flex-none.tawk-flex-middle.tawk-custom-color > div > button > i.tawk-icon-close')?.parentElement;
+                        // console.log('minimizeButtonElement', minimizeButtonElement);
+                        if (minimizeButtonElement) {
+                            // minimizeButtonElement.remove();
+                            minimizeButtonElement.style.display = 'none !important';
+                            minimizeButtonElement.style.pointerEvents = 'none';
+                            minimizeButtonElement.style.visibility = 'hidden';
+
+                            clearInterval(intervalID);
+                            break;
+                        }
                     }
-                }
+                }, 50);
             };
         })();
     </script>
 </body>
+
 </html>
