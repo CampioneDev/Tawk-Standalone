@@ -33,10 +33,14 @@
                         const minimizeButtonElement = iframe.contentWindow.document.querySelector('body > div > div > div > div.tawk-toolbar.tawk-card-primary.tawk-flex.tawk-card-small.tawk-text-right.tawk-flex-none.tawk-flex-middle.tawk-custom-color > div > button > i.tawk-icon-close')?.parentElement;
                         // console.log('minimizeButtonElement', minimizeButtonElement);
                         if (minimizeButtonElement) {
-                            // minimizeButtonElement.remove();
-                            minimizeButtonElement.style.display = 'none !important';
+                            // // minimizeButtonElement.remove();
+                            minimizeButtonElement.style.display = 'none';
                             minimizeButtonElement.style.pointerEvents = 'none';
                             minimizeButtonElement.style.visibility = 'hidden';
+
+                            var sheet = iframe.contentWindow.document.createElement('style');
+                            sheet.innerHTML = '.tawk-max-container { border: none !important; }';
+                            iframe.contentWindow.document.head.appendChild(sheet);
 
                             clearInterval(intervalID);
                             break;
