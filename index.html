@@ -28,7 +28,8 @@
                 Tawk_API.maximize();
 
                 for (let iframe of document.getElementsByTagName('iframe')) {
-                    const minimizeButtonElement = iframe.contentWindow.document.getElementById('minimizeChat');
+                    // const minimizeButtonElement = iframe.contentWindow.document.getElementById('minimizeChat');
+                    const minimizeButtonElement = iframe.contentWindow.document.querySelector('body > div > div > div > div.tawk-toolbar.tawk-card-primary.tawk-flex.tawk-card-small.tawk-text-right.tawk-flex-none.tawk-flex-middle.tawk-custom-color > div > button > i.tawk-icon-close').parentElement;
                     if (minimizeButtonElement) {
                         minimizeButtonElement.style.display = 'none !important';
                         minimizeButtonElement.style.pointerEvents = 'none';
